@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>家庭作業09</title>
+	<style>
+		h4 {
+		   color: PaleVioletRed;
+		}
+
+		label {
+		    color: PaleVioletRed;
+		}
+
+		input {
+		    color: SlateBlue;
+		}
+		div {
+		     color: SlateBlue;
+		     margin: 5px;
+		}
+        table {
+		    width: 35%;
+		    border-color: rosybrown;
+		    border-style:solid;
+		    border-collapse: collapse;
+		}
+		th {
+		    text-align: center;
+		    border-color: rosybrown;
+		    border-style:solid;
+		}
+		tr:nth-child(2n+1) {
+		    background-color: PapayaWhip  ;
+		    text-align: left;
+		    border-color: rosybrown;
+		    border-style:solid;
+		}
+		td:nth-child(1){
+		    color: brown;
+		    text-align:left;
+		    border-color: rosybrown;
+		    border-style:solid;
+		}
+	</style>
+</head>
+
+<body>
+<form id="form01">
+	<label>姓名: </label>
+	     <input type="text" name="name01" value="周子淳"><br>
+	<label>收件地址: </label>
+	     <input type="text" name="address01" value="台北市文山區辛亥路六段33號4樓之一"><br>
+	<label>電話: </label>
+	     <input type="tel" name="tel01" value="0910600618"><br>
+	<label>電子郵件: </label>
+	     <input type="email" name="email01" value="jchunnn147@gmail.com"><br>
+	<label>指定送貨日期: </label>
+	     <input type="date" name="date01" ><br>
+	<label>糕餅種類: (四選一)</label><br>
+	     <input type="radio" name="cake" id="cake01" value="鳳梨酥(12入) 360元">鳳梨酥(12入) 360元<br>
+	     <input type="radio" name="cake" id="cake02" value="鳳梨酥(24入) 480元">鳳梨酥(24入) 480元<br>
+	     <input type="radio" name="cake" id="cake03" value="蛋黃酥(10入) 350元">蛋黃酥(10入) 350元<br>
+	     <input type="radio" name="cake" id="cake04" value="芋泥酥(10入) 360元">芋泥酥(10入) 360元<br>
+</form>
+<br>
+<button onclick="shoppingInfo()"><h4>結帳</h4></button>
+<div id="demo"></div>
+<script>
+    function shoppingInfo() {
+        const x = document.getElementById("form01");
+        var item = "";
+        var price = 0;
+        var text = "<h4>您的購物資訊如下:</h4>";
+        var i;
+        text += "<table>";
+        for (i = 0; i < 5; i++) {
+            switch (i) {
+                case 0:
+                    item = "姓名: ";
+                    break;
+                case 1:
+                    item = "收件地址: ";
+                    break;
+                case 2:
+                    item = "電話: ";
+                    break;
+                case 3:
+                    item = "電子郵件: ";
+                    break;
+                case 4:
+                    item = "指定送貨日期: ";
+                    break;
+            }
+            text += "<tr>"
+            text += "<td>" + item + "</td>" + "<td>" + x.elements[i].value + "<br>" + "</td>";
+            text += "</tr>"
+        }
+        for (i = 5; i<= 8; i++) {
+            if (x.elements[i].checked == true) {
+                switch (i) {
+                    case 5:
+                        price = 360;
+                        break;
+                    case 6:
+                        price = 480;
+                        break;
+                    case 7:
+                        price = 350;
+                        break;
+                    case 8:
+                        price = 360;
+                        break;
+                }
+                text += "<tr>"
+                text += "<td>" + "蛋糕種類: " + "</td>" + "<td>" + x.elements[i].value + "<br>" + "</td>";
+                text += "</tr>"
+                text += "<tr>"
+                text += "<td>" + "價格合計: " + "</td>" + "<td>" + price + "元<br>" + "</td>";
+                text += "</tr>"
+            }
+        }
+        document.getElementById("demo").innerHTML = text;
+        text += "</table>"
+    }
+</script>
+
+</body>
+
+</html>
